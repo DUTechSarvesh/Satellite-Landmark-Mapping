@@ -89,52 +89,20 @@ The decoded images contained noise and horizontal distortion lines. These images
      observation 2
     </td>
     <td align="center">
-      <img src="original.png" width="100%"><br>
+      <img src="observation1.jpg" width="100%"><br>
       observation 3
     </td>
   </tr>
 </table>
 ---
-## 🏗 System Workflow  
 
-### 1️⃣ Satellite Tracking  
-- Satellite passes predicted using online tracking tools  
-- Recording scheduled during overhead passes  
-
-### 2️⃣ Signal Reception  
-- WebSDR used for tuning into 137 MHz frequency band  
-- Audio recorded in WAV format  
-
-### 3️⃣ Signal Decoding  
-- APT signals decoded using SatDump  
-- Generated grayscale satellite images  
-
-### 4️⃣ Image Enhancement  
-
-#### 🔹 Gaussian Filtering  
-- Reduces high-frequency Gaussian noise  
-- Smooths image  
-
-#### 🔹 Median Filtering  
-- Removes salt-and-pepper noise  
-- Preserves edges  
-
----
 ## 🖼 Image Enhancement Using Gaussian and Median Filtering
 
 Image enhancement improves the visual quality of decoded satellite images by reducing noise and preserving important features such as edges and boundaries.
 
----
-
-### 📌 Introduction
-
 Satellite images often contain noise due to signal distortion during transmission.  
 To improve clarity, we applied two widely used filtering techniques:
 
-- Gaussian Filtering  
-- Median Filtering  
-
----
 
 ### 🔹 Gaussian Filtering
 
@@ -198,119 +166,23 @@ figure, imshow(K), title('Median Filtered Image');
 - Median filter preserved edges while removing impulse noise.
 - Combining both filters produced the best visual clarity.
 
-<br>
-
-![Original Image](images/original_image.png)
-
-<br>
-
-![Median Filtered](images/median_filtered.png)
-
-<br>
-
-![Gaussian Filtered](images/gaussian_filtered.png)
-
-<br><br>
-
+<table>
+  <tr>
+    <td align="center">
+      <img src="original.png" width="100%"><br>
+      Original Image
+    </td>
+    <td align="center">
+      <img src="median_filtered.png" width="100%"><br>
+      Median Filtered
+    </td>
+    <td align="center">
+      <img src="gaussian_filtered.png" width="100%"><br>
+      Gaussian Filtered
+    </td>
+  </tr>
+</table>
 ---
-## 🖼 Image Enhancement Using Gaussian and Median Filtering
-
-Image enhancement improves the visual quality of decoded satellite images by reducing noise and preserving important features such as edges and boundaries.
-
----
-
-### 📌 Introduction
-
-Satellite images often contain noise due to signal distortion during transmission.  
-To improve clarity, we applied two widely used filtering techniques:
-
-- Gaussian Filtering  
-- Median Filtering  
-
----
-
-### 🔹 Gaussian Filtering
-
-The Gaussian filter is used to smooth images and reduce high-frequency (Gaussian) noise.
-
-**Key Points:**
-- Reduces fine-grain noise
-- Slightly smooths edges
-- Controlled by standard deviation (σ)
-
-In MATLAB:
-```matlab
-J = imgaussfilt(Igray, 3);
-```
-
----
-
-### 🔹 Median Filtering
-
-The Median filter replaces each pixel with the median value of its neighboring pixels.
-
-**Key Points:**
-- Removes salt-and-pepper noise
-- Preserves edges better than Gaussian filter
-- Works well for impulsive noise
-
-In MATLAB:
-```matlab
-K = medfilt2(Igray, [9 9]);
-```
-
----
-
-### 💻 MATLAB Implementation
-
-```matlab
-clc;
-clear;
-close all;
-
-% Read image
-I = imread("Satellite_raw_image.png");
-Igray = rgb2gray(I);
-
-% Gaussian Filter
-J = imgaussfilt(Igray, 3);
-
-% Median Filter
-K = medfilt2(Igray, [9 9]);
-
-figure, imshow(Igray), title('Original Image');
-figure, imshow(J), title('Gaussian Filtered Image');
-figure, imshow(K), title('Median Filtered Image');
-```
-
----
-
-### 📊 Results and Observations
-
-- Gaussian filter reduced fine noise but slightly blurred edges.
-- Median filter preserved edges while removing impulse noise.
-- Combining both filters produced the best visual clarity.
-
-<br>
-
-![Original Image](images/original_image.png)
-
-<br>
-
-![Median Filtered](images/median_filtered.png)
-
-<br>
-
-![Gaussian Filtered](images/gaussian_filtered.png)
-
-<br><br>
-
----
-
-### ✅ Conclusion
-
-Gaussian and Median filtering significantly improved image clarity by reducing transmission noise.  
-The filtered images provided a stronger foundation for further processing such as reconstruction and segmentation.
 
 ### ✅ Conclusion
 
@@ -345,7 +217,17 @@ K-Means clustering (k = 4) is applied to segment the satellite image into:
 - 🌿 Vegetation  
 
 False coloring is applied for better visualization and interpretation.
+<br>
 
+<img src="clustered_image.jpeg" width="100%"><br>
+<p align="center"><b>Clustered Image</b></p>
+
+<br><br>
+
+<img src="color_scheme.png" width="100%"><br>
+<p align="center"><b>Color Scheme</b></p>
+
+<br><br>
 ---
 
 ## 🛠 Technologies & Tools Used  
