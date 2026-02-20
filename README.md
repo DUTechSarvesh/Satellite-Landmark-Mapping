@@ -59,9 +59,7 @@ We tracked NOAA satellite passes using online prediction tools to determine the 
 The analog APT signal was received using WebSDR by tuning into the 137 MHz band. The audio signal was monitored and recorded in WAV format.
 
 <br>
-<img src="Set_up.png" width="100%"><br>
-![WebSDR Interface](Set_up.png)
-
+<img src="Set_up.png" width="100%">
 <br><br>
 
 ---
@@ -71,9 +69,7 @@ The analog APT signal was received using WebSDR by tuning into the 137 MHz band.
 The recorded audio was decoded using SatDump software, which converted the analog APT signal into visible satellite imagery.
 
 <br>
-<img src="Set_up.png" width="100%"><br>
-![SatDump Application](conversion.png)
-
+<img src="conversion.png" width="100%">
 <br><br>
 
 ---
