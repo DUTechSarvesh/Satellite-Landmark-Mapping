@@ -82,31 +82,28 @@ The recorded audio was decoded using SatDump software, which converted the analo
 
 The decoded images contained noise and horizontal distortion lines. These images were later enhanced using filtering and reconstruction techniques.
 
-<br>
-
-![Image 1](observation1.png)
-
-<br>
-
-![Image 2](observation2.png)
-
-<br>
-
-![Image 3](observation3.png)
-
-<br>
-
-![Image 4](observation4.png)
-
-<br>
-
-![Image 5](images/image5.png)
-
-<br>
-
-![Image 6](images/image6.png)
-
-<br><br>
+<table>
+  <tr>
+    <td align="center">
+      <img src="observation1.png" width="100%"><br>
+      Image 1
+    </td>
+    <td align="center">
+      <img src="observation2.png" width="100%"><br>
+      Image 2
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="observation3.png" width="100%"><br>
+      Image 3
+    </td>
+    <td align="center">
+      <img src="observation4.png" width="100%"><br>
+      Image 4
+    </td>
+  </tr>
+</table>
 
 ## 🏗 System Workflow  
 
