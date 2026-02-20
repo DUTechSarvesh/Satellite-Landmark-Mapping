@@ -78,25 +78,23 @@ The recorded audio was decoded using SatDump software, which converted the analo
 
 The decoded images contained noise and horizontal distortion lines. These images were later enhanced using filtering and reconstruction techniques.
 
-<<table>
+<table>
   <tr>
-    <td align="center">
-      <img src="observation1.png" width="100%"><br>
-      Image 1
-    </td>
     <td align="center">
       <img src="observation2.png" width="100%"><br>
-      Image 2
+      observation 1
     </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="center">
-      <img src="observation3.png" width="50%"><br>
-      Image 3
+    <td align="center">
+      <img src="observation3.png" width="100%"><br>
+     observation 2
+    </td>
+    <td align="center">
+      <img src="original.png" width="100%"><br>
+      observation 3
     </td>
   </tr>
 </table>
-
+---
 ## 🏗 System Workflow  
 
 ### 1️⃣ Satellite Tracking  
