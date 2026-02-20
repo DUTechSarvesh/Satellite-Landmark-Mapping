@@ -199,7 +199,7 @@ Techniques used:
 - Hough Peaks  
 - Line Extraction  
 - Morphological Operations
-
+---
 <br>
 
 <p align="center">
@@ -208,6 +208,7 @@ Techniques used:
 <p align="center"><b>Edge Detected Image</b></p>
 
 <br><br>
+---
 
 ## 🌍 Landmark Mapping Using K-Means Clustering  
 
