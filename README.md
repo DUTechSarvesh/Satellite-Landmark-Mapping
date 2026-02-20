@@ -48,7 +48,7 @@ We tracked NOAA satellite passes using online prediction tools to determine the 
 
 <br>
 
-![Tracking NOAA Satellite](images/tracking_noaa15.png)
+![Tracking NOAA Satellite](Tracking.png)
 
 <br><br>
 
@@ -60,7 +60,7 @@ The analog APT signal was received using WebSDR by tuning into the 137 MHz band.
 
 <br>
 
-![WebSDR Interface](images/websdr_interface.png)
+![WebSDR Interface](Set_up.png)
 
 <br><br>
 
