@@ -184,11 +184,6 @@ figure, imshow(K), title('Median Filtered Image');
 </table>
 ---
 
-### ✅ Conclusion
-
-Gaussian and Median filtering significantly improved image clarity by reducing transmission noise.  
-The filtered images provided a stronger foundation for further processing such as reconstruction and segmentation.
-
 ## 🧱 Image Reconstruction (Hough Transform)
 
 The Hough Transform is used to:
@@ -203,9 +198,16 @@ Techniques used:
 - Hough Transform  
 - Hough Peaks  
 - Line Extraction  
-- Morphological Operations  
+- Morphological Operations
 
----
+<br>
+
+<p align="center">
+  <img src="Edge_detected.png" width="70%">
+</p>
+<p align="center"><b>Edge Detected Image</b></p>
+
+<br><br>
 
 ## 🌍 Landmark Mapping Using K-Means Clustering  
 
@@ -217,6 +219,85 @@ K-Means clustering (k = 4) is applied to segment the satellite image into:
 - 🌿 Vegetation  
 
 False coloring is applied for better visualization and interpretation.
+## 💻 MATLAB Code for K-Means Clustering
+
+### 🔹 K-Means Clustering
+
+```matlab
+% Clear workspace/command window
+clc;
+clear;
+close all;
+
+% Import Image
+I = imread("I.jpeg");
+figure;
+imshow(I);
+title("Reconstructed Image");
+
+% K-Means Clustering
+[nrows, ncols] = size(I);
+pixels = I(:);
+
+k = 4;
+
+[idx, ~] = kmeans(pixels, k);
+kcluster_I = reshape(idx, nrows, ncols);
+
+kcluster_norm = (kcluster_I - 1) / (k - 1);
+
+figure;
+imshow(kcluster_norm);
+title('K-Means Clustered Image');
+```
+
+---
+
+### 🎨 False Coloring
+
+```matlab
+% False Coloring
+false_colors = [0 0 1; 0.71 0.40 0.11; 1 1 1; 0 0.6 0.1];
+final_I = ind2rgb(kcluster_I, false_colors);
+
+labels = {'Ocean','Land','Clouds','Vegetation'};
+
+legend_height = 3;
+legend_width = 30;
+legend_img = ones(legend_height, legend_width, 3);
+
+num_clusters = size(false_colors,1);
+block_width = floor(legend_width / num_clusters);
+
+for i = 1:num_clusters
+    x_start = (i-1)*block_width + 1;
+    x_end = i*block_width;
+    for c = 1:3
+        legend_img(:, x_start:x_end, c) = false_colors(i,c);
+    end
+end
+
+figure;
+subplot(2,1,1);
+imshow(final_I);
+title('K-Means Clustered Image');
+
+subplot(2,1,2);
+imshow(legend_img);
+title('Cluster Legend');
+
+% Add text labels under the color blocks
+hold on;
+for i = 1:num_clusters
+    x_pos = (i-1)*block_width + block_width/2;
+    text(x_pos, legend_height + 5, labels{i}, ...
+        'HorizontalAlignment','center', ...
+        'FontSize',10, ...
+        'FontWeight','bold', ...
+        'Color','k');
+end
+hold off;
+```
 <br>
 
 <img src="clustered_image.jpeg" width="100%"><br>
@@ -292,8 +373,4 @@ NOAA-Satellite-Image-Enhancement/
 B.Tech – Electronics & Communication Engineering  
 Faculty of Technology, University of Delhi  
 
----
 
-## ⭐ If You Found This Project Interesting  
-
-Give it a ⭐ on GitHub and feel free to contribute!
