@@ -48,7 +48,7 @@ We tracked NOAA satellite passes using online prediction tools to determine the 
 
 <br>
 
-![Tracking NOAA Satellite](Tracking.png)
+![Tracking NOAA Satellite](tracking.png)
 
 <br><br>
 
@@ -72,7 +72,7 @@ The recorded audio was decoded using SatDump software, which converted the analo
 
 <br>
 
-![SatDump Application](images/satdump_application.png)
+![SatDump Application](conversion.png)
 
 <br><br>
 
@@ -84,19 +84,19 @@ The decoded images contained noise and horizontal distortion lines. These images
 
 <br>
 
-![Image 1](images/image1.png)
+![Image 1](observation1.png)
 
 <br>
 
-![Image 2](images/image2.png)
+![Image 2](observation2.png)
 
 <br>
 
-![Image 3](images/image3.png)
+![Image 3](observation3.png)
 
 <br>
 
-![Image 4](images/image4.png)
+![Image 4](observation4.png)
 
 <br>
 
