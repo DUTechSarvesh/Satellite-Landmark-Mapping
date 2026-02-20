@@ -237,7 +237,104 @@ figure, imshow(K), title('Median Filtered Image');
 <br><br>
 
 ---
-<img width="151" height="758" alt="image" src="https://github.com/user-attachments/assets/0acfb470-f58e-447e-96d4-dcd721b04e0d" />
+## 🖼 Image Enhancement Using Gaussian and Median Filtering
+
+Image enhancement improves the visual quality of decoded satellite images by reducing noise and preserving important features such as edges and boundaries.
+
+---
+
+### 📌 Introduction
+
+Satellite images often contain noise due to signal distortion during transmission.  
+To improve clarity, we applied two widely used filtering techniques:
+
+- Gaussian Filtering  
+- Median Filtering  
+
+---
+
+### 🔹 Gaussian Filtering
+
+The Gaussian filter is used to smooth images and reduce high-frequency (Gaussian) noise.
+
+**Key Points:**
+- Reduces fine-grain noise
+- Slightly smooths edges
+- Controlled by standard deviation (σ)
+
+In MATLAB:
+```matlab
+J = imgaussfilt(Igray, 3);
+```
+
+---
+
+### 🔹 Median Filtering
+
+The Median filter replaces each pixel with the median value of its neighboring pixels.
+
+**Key Points:**
+- Removes salt-and-pepper noise
+- Preserves edges better than Gaussian filter
+- Works well for impulsive noise
+
+In MATLAB:
+```matlab
+K = medfilt2(Igray, [9 9]);
+```
+
+---
+
+### 💻 MATLAB Implementation
+
+```matlab
+clc;
+clear;
+close all;
+
+% Read image
+I = imread("Satellite_raw_image.png");
+Igray = rgb2gray(I);
+
+% Gaussian Filter
+J = imgaussfilt(Igray, 3);
+
+% Median Filter
+K = medfilt2(Igray, [9 9]);
+
+figure, imshow(Igray), title('Original Image');
+figure, imshow(J), title('Gaussian Filtered Image');
+figure, imshow(K), title('Median Filtered Image');
+```
+
+---
+
+### 📊 Results and Observations
+
+- Gaussian filter reduced fine noise but slightly blurred edges.
+- Median filter preserved edges while removing impulse noise.
+- Combining both filters produced the best visual clarity.
+
+<br>
+
+![Original Image](images/original_image.png)
+
+<br>
+
+![Median Filtered](images/median_filtered.png)
+
+<br>
+
+![Gaussian Filtered](images/gaussian_filtered.png)
+
+<br><br>
+
+---
+
+### ✅ Conclusion
+
+Gaussian and Median filtering significantly improved image clarity by reducing transmission noise.  
+The filtered images provided a stronger foundation for further processing such as reconstruction and segmentation.
 
 ### ✅ Conclusion
 
