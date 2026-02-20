@@ -12,17 +12,6 @@ This project presents a complete end-to-end system for:
 
 The system captures real-time Earth imagery from **NOAA-15, NOAA-18, and NOAA-19** satellites using WebSDR and processes the decoded images using advanced image processing techniques in MATLAB.
 
----
-
-## 🎯 Objectives  
-
-- Receive and decode analog APT signals from NOAA satellites  
-- Enhance noisy satellite images using filtering techniques  
-- Reconstruct corrupted line segments using Hough Transform  
-- Perform landmark mapping using K-Means clustering  
-- Build a cost-effective, hardware-free satellite imaging workflow  
-
----
 ## 📖 Introduction
 
 This project focuses on receiving and processing real-time weather satellite images transmitted by NOAA-15, NOAA-18, and NOAA-19. These satellites broadcast Automatic Picture Transmission (APT) signals in the 137 MHz band, which contain Earth observation and meteorological data.
