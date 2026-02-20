@@ -23,6 +23,29 @@ The system captures real-time Earth imagery from **NOAA-15, NOAA-18, and NOAA-19
 - Build a cost-effective, hardware-free satellite imaging workflow  
 
 ---
+\chapter{INTRODUCTION}
+
+\section{Introduction}
+
+This project focuses on the reception and processing of analog weather satellite signals transmitted by NOAA-15, NOAA-18, and NOAA-19. These satellites continuously broadcast Automatic Picture Transmission (APT) signals in the VHF band, which contain real-time meteorological imagery of the Earth's surface.
+
+The primary objective of this work is to develop a complete system capable of receiving, decoding, enhancing, and analyzing NOAA satellite images using publicly accessible tools and software. The project demonstrates how real-time Earth observation can be achieved without dedicated satellite hardware by utilizing WebSDR platforms and open-source decoding tools.
+
+NOAA satellites were selected for this project due to several important advantages:
+
+\begin{itemize}
+    \item \textbf{Public Accessibility:} The APT signals transmitted by these satellites are not encrypted and are freely available for reception.
+    
+    \item \textbf{Real-Time Broadcasting:} They continuously transmit weather data in near real-time, making them ideal for live image acquisition.
+    
+    \item \textbf{Global Coverage:} Their sun-synchronous polar orbits allow them to cover almost the entire Earth's surface multiple times per day.
+    
+    \item \textbf{Reliability and Documentation:} NOAA satellites have extensive documentation, strong community support, and well-established decoding tools.
+\end{itemize}
+
+After signal reception and decoding, the obtained satellite images often contain noise and distortions. Therefore, image enhancement techniques such as Gaussian filtering and Median filtering are applied to improve clarity. Further reconstruction is performed using the Hough Transform to detect and handle corrupted line segments. Finally, K-means clustering is used for landmark segmentation, enabling differentiation between land, water bodies, vegetation, and cloud formations.
+
+This integrated approach combines satellite communication, signal processing, image enhancement, and unsupervised machine learning into a single coherent workflow.
 
 ## 🛰️ Satellites Used  
 
