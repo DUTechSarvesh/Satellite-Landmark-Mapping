@@ -23,29 +23,22 @@ The system captures real-time Earth imagery from **NOAA-15, NOAA-18, and NOAA-19
 - Build a cost-effective, hardware-free satellite imaging workflow  
 
 ---
-\chapter{INTRODUCTION}
+## 📖 Introduction
 
-\section{Introduction}
+This project focuses on receiving and processing real-time weather satellite images transmitted by NOAA-15, NOAA-18, and NOAA-19. These satellites broadcast Automatic Picture Transmission (APT) signals in the 137 MHz band, which contain Earth observation and meteorological data.
 
-This project focuses on the reception and processing of analog weather satellite signals transmitted by NOAA-15, NOAA-18, and NOAA-19. These satellites continuously broadcast Automatic Picture Transmission (APT) signals in the VHF band, which contain real-time meteorological imagery of the Earth's surface.
+The objective of this project is to build a complete workflow for:
 
-The primary objective of this work is to develop a complete system capable of receiving, decoding, enhancing, and analyzing NOAA satellite images using publicly accessible tools and software. The project demonstrates how real-time Earth observation can be achieved without dedicated satellite hardware by utilizing WebSDR platforms and open-source decoding tools.
+- Receiving NOAA APT signals using WebSDR  
+- Decoding the signals into satellite images  
+- Enhancing noisy images using Gaussian and Median filtering  
+- Reconstructing corrupted line segments using Hough Transform  
+- Segmenting land, water, clouds, and vegetation using K-Means clustering  
 
-NOAA satellites were selected for this project due to several important advantages:
+NOAA satellites were selected because their signals are publicly accessible, broadcast in real-time, and provide global coverage through sun-synchronous polar orbits.
 
-\begin{itemize}
-    \item \textbf{Public Accessibility:} The APT signals transmitted by these satellites are not encrypted and are freely available for reception.
-    
-    \item \textbf{Real-Time Broadcasting:} They continuously transmit weather data in near real-time, making them ideal for live image acquisition.
-    
-    \item \textbf{Global Coverage:} Their sun-synchronous polar orbits allow them to cover almost the entire Earth's surface multiple times per day.
-    
-    \item \textbf{Reliability and Documentation:} NOAA satellites have extensive documentation, strong community support, and well-established decoding tools.
-\end{itemize}
+This project integrates satellite communication, signal processing, image enhancement, and basic machine learning into a single practical system for Earth observation.
 
-After signal reception and decoding, the obtained satellite images often contain noise and distortions. Therefore, image enhancement techniques such as Gaussian filtering and Median filtering are applied to improve clarity. Further reconstruction is performed using the Hough Transform to detect and handle corrupted line segments. Finally, K-means clustering is used for landmark segmentation, enabling differentiation between land, water bodies, vegetation, and cloud formations.
-
-This integrated approach combines satellite communication, signal processing, image enhancement, and unsupervised machine learning into a single coherent workflow.
 
 ## 🛰️ Satellites Used  
 
@@ -58,6 +51,73 @@ This integrated approach combines satellite communication, signal processing, im
 These satellites broadcast real-time weather imagery via APT signals in the 137 MHz band.
 
 ---
+## 📡 Signal Reception Setup
+
+### 2.1 Satellite Tracking and Scheduling
+
+We tracked NOAA satellite passes using online prediction tools to determine the exact time when the satellite would be overhead. This helped us record high-quality APT signals.
+
+<br>
+
+![Tracking NOAA Satellite](images/tracking_noaa15.png)
+
+<br><br>
+
+---
+
+### 2.2 Signal Reception Setup
+
+The analog APT signal was received using WebSDR by tuning into the 137 MHz band. The audio signal was monitored and recorded in WAV format.
+
+<br>
+
+![WebSDR Interface](images/websdr_interface.png)
+
+<br><br>
+
+---
+
+### 2.3 Audio Recording and Conversion
+
+The recorded audio was decoded using SatDump software, which converted the analog APT signal into visible satellite imagery.
+
+<br>
+
+![SatDump Application](images/satdump_application.png)
+
+<br><br>
+
+---
+
+### 2.4 Observations
+
+The decoded images contained noise and horizontal distortion lines. These images were later enhanced using filtering and reconstruction techniques.
+
+<br>
+
+![Image 1](images/image1.png)
+
+<br>
+
+![Image 2](images/image2.png)
+
+<br>
+
+![Image 3](images/image3.png)
+
+<br>
+
+![Image 4](images/image4.png)
+
+<br>
+
+![Image 5](images/image5.png)
+
+<br>
+
+![Image 6](images/image6.png)
+
+<br><br>
 
 ## 🏗 System Workflow  
 
@@ -84,6 +144,105 @@ These satellites broadcast real-time weather imagery via APT signals in the 137 
 - Preserves edges  
 
 ---
+## 🖼 Image Enhancement Using Gaussian and Median Filtering
+
+Image enhancement improves the visual quality of decoded satellite images by reducing noise and preserving important features such as edges and boundaries.
+
+---
+
+### 📌 Introduction
+
+Satellite images often contain noise due to signal distortion during transmission.  
+To improve clarity, we applied two widely used filtering techniques:
+
+- Gaussian Filtering  
+- Median Filtering  
+
+---
+
+### 🔹 Gaussian Filtering
+
+The Gaussian filter is used to smooth images and reduce high-frequency (Gaussian) noise.
+
+**Key Points:**
+- Reduces fine-grain noise
+- Slightly smooths edges
+- Controlled by standard deviation (σ)
+
+In MATLAB:
+```matlab
+J = imgaussfilt(Igray, 3);
+```
+
+---
+
+### 🔹 Median Filtering
+
+The Median filter replaces each pixel with the median value of its neighboring pixels.
+
+**Key Points:**
+- Removes salt-and-pepper noise
+- Preserves edges better than Gaussian filter
+- Works well for impulsive noise
+
+In MATLAB:
+```matlab
+K = medfilt2(Igray, [9 9]);
+```
+
+---
+
+### 💻 MATLAB Implementation
+
+```matlab
+clc;
+clear;
+close all;
+
+% Read image
+I = imread("Satellite_raw_image.png");
+Igray = rgb2gray(I);
+
+% Gaussian Filter
+J = imgaussfilt(Igray, 3);
+
+% Median Filter
+K = medfilt2(Igray, [9 9]);
+
+figure, imshow(Igray), title('Original Image');
+figure, imshow(J), title('Gaussian Filtered Image');
+figure, imshow(K), title('Median Filtered Image');
+```
+
+---
+
+### 📊 Results and Observations
+
+- Gaussian filter reduced fine noise but slightly blurred edges.
+- Median filter preserved edges while removing impulse noise.
+- Combining both filters produced the best visual clarity.
+
+<br>
+
+![Original Image](images/original_image.png)
+
+<br>
+
+![Median Filtered](images/median_filtered.png)
+
+<br>
+
+![Gaussian Filtered](images/gaussian_filtered.png)
+
+<br><br>
+
+---
+<img width="151" height="758" alt="image" src="https://github.com/user-attachments/assets/0acfb470-f58e-447e-96d4-dcd721b04e0d" />
+
+### ✅ Conclusion
+
+Gaussian and Median filtering significantly improved image clarity by reducing transmission noise.  
+The filtered images provided a stronger foundation for further processing such as reconstruction and segmentation.
 
 ## 🧱 Image Reconstruction (Hough Transform)
 
